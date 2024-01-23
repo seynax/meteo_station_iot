@@ -9,3 +9,9 @@ CESI meteo station IOT project
 
 -compte.html : page avec graphique en temps réel (JS, librairie pour graphique)
 
+# How to deploy
+
+- Connect into same raspberry PI server
+- Execute deploy.sh (linux) OR deploy.bat (windows)
+The script add, commit (ask for message) and push modifications, execute git pull from SSH into server correct api folder
+
