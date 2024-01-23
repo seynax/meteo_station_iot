@@ -1,4 +1,5 @@
-var canvas = document.getElementById("canvas");
+document.addEventListener("DOMContentLoaded", function() {
+    var canvas = document.getElementById("canvas");
 
 // Apply multiply blend when drawing datasets
 var multiply = {
