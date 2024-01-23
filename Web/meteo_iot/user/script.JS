@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     var canvas = document.getElementById("canvas");
-});
+
 // Apply multiply blend when drawing datasets
 var multiply = {
   beforeDatasetsDraw: function(chart, options, el) {
@@ -80,3 +80,4 @@ var config = {
 };
 
 window.chart = new Chart(canvas, config);
+});
