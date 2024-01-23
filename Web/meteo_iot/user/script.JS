@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     var canvas = document.getElementById("canvas");
-
+});
 // Apply multiply blend when drawing datasets
 var multiply = {
   beforeDatasetsDraw: function(chart, options, el) {
@@ -20,6 +20,7 @@ gradientThisWeek.addColorStop(1, '#9787FF');
 var gradientPrevWeek = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
 gradientPrevWeek.addColorStop(0, '#FF55B8');
 gradientPrevWeek.addColorStop(1, '#FF8787');
+
 
 var config = {
     type: 'line',
