@@ -16,11 +16,6 @@ var gradientThisWeek = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150
 gradientThisWeek.addColorStop(0, '#5555FF');
 gradientThisWeek.addColorStop(1, '#9787FF');
 
-// Gradient color - previous week
-var gradientPrevWeek = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
-gradientPrevWeek.addColorStop(0, '#FF55B8');
-gradientPrevWeek.addColorStop(1, '#FF8787');
-
 
 var config = {
     type: 'line',
