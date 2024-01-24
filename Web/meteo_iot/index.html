@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--Dans head il y a tout les script/link qui permettent l'utilisation de lib comme tailwind -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <title>Projet_IOT/index</title>
 </head>
+<!--ici on doit que le fond est noir et que le texte est centré et blanc-->
 <body class="bg-black text-white h-screen flex flex-col justify-center items-center">
-
+<!--On dit ici que le texte a une certaine taille-->
   <h1 class="text-4xl mb-6">Bienvenue sur le site !</h1>
 
+  <!--Création des boutons-->
   <div class="flex space-x-4">
-    <button class="bg-blue-500 text-white py-2 px-4 rounded">Créer un compte</button>
-    <button class="bg-white text-black py-2 px-4 rounded">Se connecter</button>
+   <a href="creationcompte.html"> <button class="bg-blue-500 text-white py-2 px-4 rounded">Créer un compte</button> </a>
+    <a href="connexion.html"> <button class="bg-white text-black py-2 px-4 rounded">Se connecter</button> </a>
   </div>
 
 </body>
