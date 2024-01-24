@@ -20,11 +20,11 @@ gradientThisWeek.addColorStop(1, '#9787FF');
 var config = {
     type: 'line',
     data: {
-        labels: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN", "MON"],
+        labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
           {
               label: 'Temperature',
-              data: [18, 26, 14, 22, 12, 20, 12, 18, 10],
+              data: [26, 14, 22, 12, 20, 12, 18],
               fill: false,
               borderColor: 'rgba(255, 255, 255, 0.2)',
               borderWidth: 2,
@@ -38,17 +38,17 @@ var config = {
         ]
     },
     options: {
-    	responsive: false,
+    	responsive: true,
       elements: { 
         point: {
           radius: 6,
           hitRadius: 6, 
           hoverRadius: 6 
-        } 
+        },
       },
-      legend: {
-        display: false,
-      },
+        legend: {
+          display: false, 
+        },
       tooltips: {
       	backgroundColor: 'transparent',
         displayColors: false,
