@@ -7,7 +7,7 @@ DEVELOP -> TESTING -> MAIN
 
 # Branchs
 
-- API :
+- SERVER :
   - Raspberry server : Linux
   - API : Python, Flask
   - Webapp (HTML, Tailwin)
