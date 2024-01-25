@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 async function fetchData() {
-    const response = await fetch('http://localhost:5000/api/releves/');
+    const response = await fetch('http://192.168.124.128:5000/api/releves/');
     return await response.json();
 }
 
