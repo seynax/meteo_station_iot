@@ -14,6 +14,7 @@ cursor.execute('''
     CREATE TABLE IF NOT EXISTS sondes (
         id_sonde INTEGER PRIMARY KEY AUTOINCREMENT,
         nom TEXT NOT NULL,
+        IMEI_sonde varchar(15),        
         etat INTEGER DEFAULT 1
     )
 ''')
@@ -29,6 +30,28 @@ cursor.execute('''
         FOREIGN KEY (id_sonde) REFERENCES sondes(id_sonde)
     )
 ''')
+
+cursor.execute("INSERT INTO sondes (nom, etat) VALUES (?, ?)", ("Sonde", 1))
+
+cursor.execute
+("INSERT INTO releves (id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)", (0 , 25.5, 60.0, 1013.25))
+
+
+cursor.execute
+("INSERT INTO releves (id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)", (0, 26.3, 68.3, 1012.90))
+
+
+cursor.execute
+("INSERT INTO releves (id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)", (0 , 25.5, 60.0, 1013.80))
+
+
+cursor.execute
+("INSERT INTO releves (id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)", (0 , 26.7, 62.3, 1011.15))
+
+
+cursor.execute
+("INSERT INTO releves (id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)", (0 , 25.5, 75.0, 1012.75))
+
 
 connection.commit()
 connection.close()
