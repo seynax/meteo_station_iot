@@ -1,8 +1,10 @@
 import flask
-
+from flask_cors import CORS
 import sqlite3
 
 app = flask.Flask(__name__, template_folder='views')
+CORS(app)  
+
 
 @app.route('/api/releves', methods=['POST'])
 def ajouter_releve():
@@ -13,12 +15,12 @@ def ajouter_releve():
     date_releve = data.get('date_releve')
     id_sonde = data.get('id_sonde')
 
-    conn = sqlite3.connect("baseDeDonnee.db")
-    cursor = conn.cursor()
+    connection = sqlite3.connect("baseDeDonnee.db")
+    cursor = connection.cursor()
     cursor.execute('INSERT INTO releves (id_sonde, temperature, humidite, pression, date_releve) VALUES (?,?,?,?,?)',
                    (id_sonde, temperature, humidite, pression, date_releve))
-    conn.commit()
-    conn.close()
+    connection.commit()
+    connection.close()
 
     return flask.jsonify({"message": "Relevé bien ajouté"})
 
@@ -92,6 +94,34 @@ def desactiver_sonde():
     cursor.execute('UPDATE sondes SET etat = 0 WHERE id_sonde = ?', (id_sonde,))
     conn.commit()
     conn.close()
+
+
+    # Route pour que l'admin recupere tout
+@app.route('/api/admin/recup-toutes-les-donnees', methods=['GET'])
+def recuperer_toutes_les_donnees():
+    conn = sqlite3.connect("baseDeDonnee.db")
+    cursor = conn.cursor()
+
+    # on recup tout les données
+    cursor.execute('SELECT * FROM releves')
+    releves = cursor.fetchall()
+
+    conn.close()
+
+    liste_releves = []
+
+    
+    for releve in releves:
+        dico = {'id_releve': releve[0],
+                'id_sonde': releve[1],
+                'temperature': releve[2],
+                'humidite': releve[3],
+                'pression': releve[4],
+                'date_releve': releve[5]}
+        liste_releves.append(dico)
+
+    
+    return flask.jsonify(liste_releves)
 
     return flask.jsonify({"message": "Sonde désactivée"})
 
