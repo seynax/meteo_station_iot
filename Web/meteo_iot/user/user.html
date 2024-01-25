@@ -10,7 +10,32 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-light">
-    <div class="container mt-5">
+        <!-- Bannière bleue avec menus déroulants -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="bg-primary text-white p-3">
+                    <!-- Menu déroulant pour choisir la sonde -->
+                    <label for="selectSonde" class="form-label text-white">Choisir la sonde :</label>
+                    <select class="form-select" id="selectSonde">
+                        <!-- Options de sondes à ajouter dynamiquement -->
+                    </select>
+
+                    <!-- Menu déroulant pour choisir la période -->
+                    <label for="selectPeriode" class="form-label text-white ms-3">Choisir la période :</label>
+                    <select class="form-select" id="selectPeriode">
+                        <option value="heure">Par Heure</option>
+                        <option value="jour">Par Jour</option>
+                        <option value="semaine">Par Semaine</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+                <!-- Ajoutez d'autres boutons déroulants ou éléments ici si nécessaire -->
+    
+                <div class="col-md-6">
+                    <!-- Ajoutez d'autres boutons déroulants ou éléments ici si nécessaire -->
+                </div>
+            </div>
         <div class="row">
             <!-- Graphique pour la température -->
             <div class="col-md-4">
@@ -56,7 +81,37 @@ document.addEventListener('DOMContentLoaded', function () {
     setupTemperatureChart();
     setupHumidityChart();
     setupPressureChart();
+    // Charger les sondes disponibles dans le menu déroulant
+    loadSondes();
 });
+
+async function loadSondes() {
+    try {
+        const response = await fetch('http://192.168.124.128:5000/api/admin/recup-toutes-les-donnees');
+        const data = await response.json();
+
+        // Utiliser un ensemble pour stocker les identifiants uniques des sondes
+        const sondesSet = new Set();
+        data.forEach(sonde => sondesSet.add(sonde.id_sonde));
+
+        // Sélectionner l'élément du menu déroulant
+        const selectSonde = document.getElementById('selectSonde');
+
+        // Effacer les options existantes
+        selectSonde.innerHTML = '';
+
+        // Ajouter les options pour chaque sonde unique
+        sondesSet.forEach(id_sonde => {
+            const option = document.createElement('option');
+            option.value = id_sonde;
+            option.text = `Sonde ${id_sonde}`;
+            selectSonde.add(option);
+        });
+
+    } catch (error) {
+        console.error('Une erreur s\'est produite lors de la récupération des sondes', error);
+    }
+}
 
 async function fetchData() {
     const response = await fetch('http://192.168.124.128:5000/api/releves/');
