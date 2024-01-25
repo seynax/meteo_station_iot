@@ -22,7 +22,7 @@ cursor.execute('''
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS releves (
         id_releve INTEGER PRIMARY KEY AUTOINCREMENT,
-        id_sonde INTEGER,
+        id_sonde INTEGER UNIQUE,
         temperature REAL,
         humidite REAL,
         pression REAL,
