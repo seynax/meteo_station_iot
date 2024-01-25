@@ -153,8 +153,8 @@ def recuperer_toutes_les_donnees():
                 'temperature': releve[2],
                 'humidite': releve[3],
                 'pression': releve[4],
-                'date_releve': releve[5]}
-                'pictogramme': determiner_pictogramme(releve[2])} 
+                'date_releve': releve[5],
+                'pictogramme': determiner_pictogramme(releve[2])},
         liste_releves.append(dico)
 
     
