@@ -3,8 +3,7 @@ from flask_cors import CORS
 import sqlite3
 
 app = flask.Flask(__name__, template_folder='views')
-CORS(app)  
-
+CORS(app)
 
 # fonction emoji selon la temperature
 def determiner_pictogramme(temperature):
@@ -13,8 +12,35 @@ def determiner_pictogramme(temperature):
     else:
         return '❄️'
 
+# Route pour créer un compte utilisateur
+@app.route('/api/signup', methods=['POST'])
+def signup():
+    data = flask.request.get_json()
+    pseudo = data.get('pseudo')
+    mot_de_passe = data.get('mot_de_passe')
+    confirmation_mot_de_passe = data.get('confirmation_mot_de_passe')
 
+    # Vérifier que les mots de passe correspondent
+    if mot_de_passe != confirmation_mot_de_passe:
+        return flask.jsonify({"message": "Les mots de passe ne correspondent pas"}), 400
 
+    # Vérifier si l'utilisateur existe déjà
+    conn = sqlite3.connect("baseDeDonnee.db")
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM utilisateurs WHERE pseudo = ?', (pseudo,))
+    existing_user = cursor.fetchone()
+
+    if existing_user:
+        return flask.jsonify({"message": "L'utilisateur existe déjà"}), 400
+
+    # Ajouter l'utilisateur à la base de données
+    cursor.execute('INSERT INTO utilisateurs (pseudo, mot_de_passe) VALUES (?, ?)', (pseudo, mot_de_passe))
+    conn.commit()
+    conn.close()
+
+    return flask.jsonify({"message": "Compte utilisateur créé avec succès"}), 201
+
+# Route pour ajouter un relevé
 @app.route('/api/releves', methods=['POST'])
 def ajouter_releve():
     data = flask.request.get_json()
@@ -32,7 +58,6 @@ def ajouter_releve():
     connection.close()
 
     return flask.jsonify({"message": "Relevé bien ajouté"})
-
 @app.route('/api/releves/', methods=['GET'])
 def recuperer_releves():
     conn = sqlite3.connect("baseDeDonnee.db")
