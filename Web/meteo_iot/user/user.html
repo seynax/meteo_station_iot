@@ -24,7 +24,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Obtenir les données de l'API (remplacez l'URL par votre propre API)
-            fetch('/api/releves')  // Utiliser l'URL relative
+            fetch('http://localhost:5000/api/')  // Utiliser l'URL relative
                 .then(response => response.json())
                 .then(data => {
                     // Préparer les données pour le graphique
