@@ -6,6 +6,15 @@ app = flask.Flask(__name__, template_folder='views')
 CORS(app)  
 
 
+# fonction emoji selon la temperature
+def determiner_pictogramme(temperature):
+    if temperature >= 20:
+        return '☀️'
+    else:
+        return '❄️'
+
+
+
 @app.route('/api/releves', methods=['POST'])
 def ajouter_releve():
     data = flask.request.get_json()
@@ -106,6 +115,12 @@ def recuperer_toutes_les_donnees():
     cursor.execute('SELECT * FROM releves')
     releves = cursor.fetchall()
 
+
+  # on récupère les relevés spécifiques d'une  seule sonde
+    cursor.execute('SELECT * FROM releves WHERE id_sonde = ?', (id_sonde,))
+    releves = cursor.fetchall()
+
+
     conn.close()
 
     liste_releves = []
@@ -118,6 +133,7 @@ def recuperer_toutes_les_donnees():
                 'humidite': releve[3],
                 'pression': releve[4],
                 'date_releve': releve[5]}
+                'pictogramme': determiner_pictogramme(releve[2])} 
         liste_releves.append(dico)
 
     
