@@ -13,7 +13,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS utilisateurs (
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS sondes (
         id_sonde INTEGER PRIMARY KEY AUTOINCREMENT,
-        nom TEXT NOT NULL,
+        nom TEXT UNIQUE NOT NULL,
         IMEI_sonde varchar(15),        
         etat INTEGER DEFAULT 1
     )
@@ -22,7 +22,7 @@ cursor.execute('''
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS releves (
         id_releve INTEGER PRIMARY KEY AUTOINCREMENT,
-        id_sonde INTEGER UNIQUE,
+        id_sonde INTEGER,
         temperature REAL,
         humidite REAL,
         pression REAL,
@@ -42,7 +42,7 @@ cursor.execute
 
 
 cursor.execute
-("INSERT INTO releves (id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)", (1 , 25.5, 60.0, 1013.80))
+("INSERT INTO releves (id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)", (1 , 25.0, 60.0, 1013.80))
 
 
 cursor.execute
