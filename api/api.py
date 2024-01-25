@@ -127,7 +127,7 @@ def desactiver_sonde():
 
 
     # Route pour que l'admin recupere tout
-@app.route('/api/admin/recup-toutes-les-donnees', methods=['GET'])
+@app.route('/api/user/recup-toutes-les-donnees', methods=['GET'])
 def recuperer_toutes_les_donnees():
     conn = sqlite3.connect("baseDeDonnee.db")
     cursor = conn.cursor()
@@ -161,6 +161,29 @@ def recuperer_toutes_les_donnees():
     return flask.jsonify(liste_releves)
 
     return flask.jsonify({"message": "Sonde désactivée"})
+
+@app.route('/api/admin/recup-toutes-les-donnees', methods=['GET'])
+def recuperer_toutes_les_donnees():
+    conn = sqlite3.connect("baseDeDonnee.db")
+    cursor = conn.cursor()
+
+    # on recup tout les données
+    cursor.execute('SELECT * FROM releves')
+    releves = cursor.fetchall()
+    conn.close()
+
+    liste_releves = []
+
+    
+    for releve in releves:
+        dico = {'id_releve': releve[0],
+                'id_sonde': releve[1],
+                'temperature': releve[2],
+                'humidite': releve[3],
+                'pression': releve[4],
+                'date_releve': releve[5],
+                'pictogramme': determiner_pictogramme(releve[2])},
+        liste_releves.append(dico)
 
 if __name__ == '__main__':
     app.run(host="192.168.124.128", debug=True)
