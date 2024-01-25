@@ -163,7 +163,7 @@ def recuperer_toutes_les_donnees():
     return flask.jsonify({"message": "Sonde désactivée"})
 
 @app.route('/api/admin/recup-toutes-les-donnees', methods=['GET'])
-def recuperer_toutes_les_donnees():
+def recuperer_toutes_les_donnees_admin():
     conn = sqlite3.connect("baseDeDonnee.db")
     cursor = conn.cursor()
 
