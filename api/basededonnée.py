@@ -6,7 +6,8 @@ cursor = connection.cursor()
 cursor.execute('''CREATE TABLE IF NOT EXISTS utilisateurs (
         id_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
         pseudo TEXT NOT NULL,
-        mot_de_passe TEXT NOT NULL
+        mot_de_passe TEXT NOT NULL,
+        etat_user INTEGER DEFAULT 1
     )
 ''')
 
