@@ -45,6 +45,27 @@ def recuperer_releves():
 
     return flask.jsonify(liste_releves)
 
+@app.route('/api/releves/<int:id_sonde>', methods=['GET'])
+def recuperer_releves_sonde(id_sonde):
+    conn = sqlite3.connect("baseDeDonnee.db")
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM releves WHERE id_sonde = ?', (id_sonde,))
+    releves = cursor.fetchall()
+    conn.close()
+
+    liste_releves = []
+
+    for releve in releves:
+        dico = {'id_releve': releve[0],
+                'id_sonde': releve[1],
+                'temperature': releve[2],
+                'humidite': releve[3],
+                'pression': releve[4],
+                'date_releve': releve[5]}
+        liste_releves.append(dico)
+
+    return flask.jsonify(liste_releves)
+
 @app.route('/api/ajouter-sonde', methods=['POST'])
 def ajouter_sonde():
     data = flask.request.get_json()
