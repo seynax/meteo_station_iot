@@ -126,4 +126,4 @@ def recuperer_toutes_les_donnees():
     return flask.jsonify({"message": "Sonde désactivée"})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="192.168.124.128", debug=True)
