@@ -14,6 +14,7 @@ cursor.execute('''
     CREATE TABLE IF NOT EXISTS sondes (
         id_sonde INTEGER PRIMARY KEY AUTOINCREMENT,
         nom TEXT NOT NULL,
+        IMEI_sonde varchar(15),        
         etat INTEGER DEFAULT 1
     )
 ''')
