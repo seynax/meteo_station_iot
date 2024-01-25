@@ -31,13 +31,11 @@ cursor.execute('''
     )
 ''')
 
-cursor.execute("INSERT INTO sondes (nom, etat) VALUES (?, ?)", ("Sonde", 1))
+#cursor.execute("INSERT INTO sondes (nom, etat) VALUES (?, ?)", ("Sonde", 1))
 
-cursor.execute
-("INSERT INTO releves (id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)", (1 , 25.5, 60.0, 1013.25))
+#cursor.execute("""INSERT INTO releves(id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)""", (1 , 25.5, 60.0, 1013.25))
 
-cursor.execute
-("INSERT INTO releves (id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)", (1, 26.3, 68.3, 1012.90))
+cursor.execute("""INSERT INTO releves(id_sonde, temperature, humidite, pression) VALUES (?, ?, ?, ?)""", (1, 26.3, 68.3, 1012.90))
 
 
 cursor.execute
