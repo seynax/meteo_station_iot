@@ -237,4 +237,4 @@ def recuperer_toutes_les_donnees_admin():
 
 # Exécution de l'application Flask
 if __name__ == '__main__':
-    app.run(host="192.168.124.128", debug=True)
+    app.run(port= 4000, host="192.168.124.128", debug=True)
