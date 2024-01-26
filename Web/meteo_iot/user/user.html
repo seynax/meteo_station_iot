@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function loadSondes() {
     try {
-        const response = await fetch('http://192.168.124.128:5000/api/admin/recup-toutes-les-donnees');
+        const response = await fetch('http://192.168.124.128:4000/api/admin/recup-toutes-les-donnees');
         const data = await response.json();
 
         // Utiliser un ensemble pour stocker les identifiants uniques des sondes
@@ -114,7 +114,7 @@ async function loadSondes() {
 }
 
 async function fetchData() {
-    const response = await fetch('http://192.168.124.128:5000/api/releves/');
+    const response = await fetch('http://192.168.124.128:4000/api/releves/');
     return await response.json();
 }
 
